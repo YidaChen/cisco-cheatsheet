@@ -211,14 +211,16 @@ This chapter describes how to configure a PPP connection.
 \verb!Router1(config)# username Router 3 secret cisco!
 \verb!Router1(config)# interface s0/0/0!
 \verb!Router1(config-if)# ppp authentication chap!
-
-
 \verb!R1(config)# username R3 secret class!
 \verb!R1(config)# interface s0/0/0!
 \verb!R1(config-if)# ppp authentication pap!
 \verb!R1(config-if)# ppp pap sent-username R1 password cisco!
-\verb! !
 
+\subsection{Troubleshoot PPP}
+\verb!R1# debug ppp packet!
+\verb!R1# debug ppp negotiation!
+\verb!R1# debug ppp authentication!
+\verb!R1# debug ppp error!
 
 \subsection{Verifying PPP Connection}
 \verb!R1# show interface serial 0/0/0! \\
