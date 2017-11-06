@@ -1,6 +1,6 @@
 # Cisco cheat sheet
 
-This is a Cisco reference sheet wich is geared toward ... Feel free to create a pull request for suggestions. This cheat sheet is based on the [LaTeX cheat sheet](http://wch.github.io/latexsheet/) by [Winston Chang](https://github.com/wch).
+This is a Cisco reference sheet which is geared toward practical usage. Feel free to create a pull request for suggestions. This cheat sheet is based on the [LaTeX cheat sheet](http://wch.github.io/latexsheet/) by [Winston Chang](https://github.com/wch).
 
 PNG images of the reference sheet:
 
