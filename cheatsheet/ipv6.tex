@@ -32,3 +32,22 @@ R1(config-if)# ipv6 enable
 R1(config-if)# 2000::1/64
 R1(config-if)# no shutdown
 \end{verbatim}
+
+\subsection{IPv6 Static Routing}
+Configuration commands for its static routing are similar to IPv4.
+\begin{verbatim}
+R1(config)# ipv6 unicast-routing
+R1(config)# ipv6 route 2000:2::/64 2001::20
+\end{verbatim}
+
+\subsection{IPv6 Dynamic Routing}
+\begin{verbatim}
+R1(config)# interface FastEthernet0/0
+R1(config-if)# ipv6 address 2000:1::1/64
+R1(config-if)# ipv6 rip Net1 enable
+R1(config-if)# ipv6 enable
+R1(config-if)# interface FastEthernet0/1
+R1(config-if)# ipv6 address 2001::10/64
+R1(config-if)# ipv6 rip Net1 enable
+R1(config-if)# ipv6 enable
+\end{verbatim}
