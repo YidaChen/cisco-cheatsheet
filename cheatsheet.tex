@@ -71,16 +71,54 @@
 
 \section{Basic Configuration}
 \subsection{Initial Commands}
-Name the device:
-\verb!Router# configure terminal!
-\verb!Router(config)# hostname [hostname]!
+Name the device: \\
+\verb!Router# configure terminal! \\
+\verb!Router(config)# hostname [hostname]! \\
+
+\smallskip
+
+Configure a banner: \\
+\verb!R1(config)# banner motd $Autorized Access Only$! \\
+
+\smallskip
+
+Save the Changes: \\
+\verb!R1# copy running-config startup-config!
+
+\smallskip
+
+Configure Interface IPv4:
+\verb!R1(config)# interface gigabitethernet 0/0! \\
+\verb!R1(config-if)# description Link to LAN 1! \\
+\verb!R1(config-if)# ip address 192.168.10.1 255.255.255.0! \\
+\verb!R1(config-if)# no shutdown! \\
+\textit{-or-} \\
+\verb!R1(config)# interface serial 0/0/0! \\
+\verb!R1(config-if)# description Link to R2! \\
+\verb!R1(config-if)# ip address 209.165.200.225 255.255.255.252! \\
+\verb!R1(config-if)# clock rate 128000! \\
+\verb!R1(config-if)# no shutdown! \\
+
+
+\subsection{Secure Management Access}
+\verb!R1(config)# enable secret class! \\
+\verb!R1(config)# line console 0! \\
+\verb!R1(config-line)# password cisco! \\
+\verb!R1(config-line)# login! \\
+\verb!R1(config-line)# exit! \\
+\verb!R1(config)# line vty 0 4! \textit{$\leftarrow$ depending on the number of VTYs!} \\
+\verb!R1(config-line)# password cisco! \\
+\verb!R1(config-line)# login! \\
+\verb!R1(config-exit)# exit! \\
+\verb!R1(config)# service password-encryption!
+
 
 \subsection{VLAN}
 
 \subsection{Access Control Lists}
 This chapter describes how to configure Access Control Lists (ACLs).
 \begin{tcolorbox}
-\textbf{Let op!} Each ACL contains an implicit DENY at the end!
+\textbf{Note!} Each ACL contains an implicit DENY at the end!
 \end{tcolorbox}
 
 
