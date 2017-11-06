@@ -149,17 +149,7 @@ This chapter describes how to configure OSPF.
 \section{Single-Area OSPF}
 This chapter describes how to configure Single-Area OSPF. 
 \verb! R1(config)# interface GigabitEthernet0/0! 
-\verb! R1(config-if)# bandwidth 1000000! \\
-\verb! R1(config-if)# exit! \\
-\verb! R1(config)# router ospf 10! \\ 
-\verb! R1(config-router)# router-id 1.1.1.1! \\
-\verb! R1(config-router)# auto-cost reference-bandwidth 1000!
-\verb! R1(config-router)# network 172.16.1.0 0.0.0.255 area 0!
-\verb! R1(config-router)# passive-interface g0/0!
-
-\subsection{Verifying Single-Area OSPF}
-
-
+\verb! R1)config-if)# bandwidth 
 
 \section{Multi-Area OSPF}
 
