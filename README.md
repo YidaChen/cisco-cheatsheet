@@ -6,6 +6,7 @@ PNG images of the reference sheet:
 
 ![](cheatsheet-thumb-0.png)
 ![](cheatsheet-thumb-1.png)
+![](cheatsheet-thumb-2.png)
 
 ## Download
 
