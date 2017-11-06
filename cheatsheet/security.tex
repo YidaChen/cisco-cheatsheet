@@ -11,26 +11,26 @@ R1(config)# exec-timeout 3 30
 \end{verbatim}
 
 \subsection{Enable Stronger Password Encryption}
-\begin{verbatim}
 \begin{tcolorbox}
-\textbf{Note!} There are two methods of enabling a stronger password hash. The first one is when you already have a hash of the encrypted password. The second one is if you want to enter a password. The Second method does not work in Packet Tracer
+\textbf{Note!}There are two methods of enabling a stronger password hash. The first one is when you already have a hash of the encrypted password. The second one is if you want to enter a password. The Second method does not work in Packet Tracer
 \end{tcolorbox}
+\begin{verbatim}
 First Methode
 R1(config)# enable secret 9 HZWdzLHwhPtZ3UD9OlUDSGvBy.m8Tf9vCGDJRcYy8zIMbyRJgtxgRkwzY \\
 
 Second Method
-R1(config)# enable algorithm-type scrypt secret supersecretpassword 
+R1(config)# enable algorithm-type scrypt secret cisco 
 \end{verbatim}
 
 \subsection{Password Encryption for username secret}
 \begin{verbatim}
-R1(config)# username Bob algorithm-type scrypt secret supersecretpassword 
+R1(config)# username Bob algorithm-type scrypt secret cisco
 \end{verbatim}
 
 
 \subsection{Configure Secure Line Acces}
 \begin{verbatim}
-R1(config)# username Bob algorithm-type scrypt secret supersecretpassword 
+R1(config)# username Bob algorithm-type scrypt secret cisco
 \end{verbatim}
 
 
