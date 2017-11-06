@@ -19,7 +19,7 @@ This chapter describes how to configure a PPP connection.
 \subsection{Basic PPP PAP Authentication}
 \begin{tcolorbox}
 \textbf{Note!} The first command is the expected username and password which R3 will send!
-
+\end{tcolorbox}
 \verb!R1(config)# username R3 secret class!
 \verb!R1(config)# interface s0/0/0!
 \verb!R1(config-if)# ppp authentication pap!
@@ -28,6 +28,7 @@ This chapter describes how to configure a PPP connection.
 \subsection{Basic PPP CHAP Authentication}
 \begin{tcolorbox}
 \textbf{Note!} As opposed of PAP. CHAP passwords need to be identical
+\end{tcolorbox}
 \verb!R1(config)# hostname Router1!
 \verb!Router1(config)# username Router 3 secret cisco!
 \verb!Router1(config)# interface s0/0/0!
