@@ -113,12 +113,20 @@ Configure Interface IPv4:
 \verb!R1(config)# service password-encryption!
 
 
-\subsection{VLAN}
+\section{VLAN}
 
 \subsection{Access Control Lists}
 This chapter describes how to configure Access Control Lists (ACLs).
 \begin{tcolorbox}
 \textbf{Note!} Each ACL contains an implicit DENY at the end!
+\end{tcolorbox}
+
+\section{IPv6}
+This chapter describes how to configure IPv6.
+\subsection{IPv6 Autoconfiguration}
+\begin{tcolorbox}
+\textbf{Note!} Autoconfiguration requires te leas amount of configuration but makes it difficult to remember the IPv6 addresses.
+This method uses the MAC address of the device to create an IPv6 address with the \verb!FE80::! prefix.
 \end{tcolorbox}
 
 
