@@ -147,6 +147,7 @@ More information about \href{https://www.cisco.com/c/en/us/td/docs/ios/12_2sb/fe
 \section{OSPF}
 This chapter describes how to configure OSPF.
 \section{Single-Area OSPF}
+\textit{Note: The same commands are used for Multi-Area OSPF, except there are more area's. Carefully look which device belong to which area }\\
 \verb!R1(config)# interface GigabitEthernet0/0! 
 \verb!R1(config-if)# bandwidth 1000000! \\
 \verb!R1(config-if)# exit! \\
@@ -157,8 +158,8 @@ This chapter describes how to configure OSPF.
 \verb!R1(config-router)# passive-interface g0/0!
 
 \subsection{Single-Area OSPFv3}
-\verb!R1(config)# ipv6 router ospf 10! \\ 
-\verb!R1(config-router)# router-id 1.1.1.1! \\
+\verb!R1(config)# ipv6 router ospf 10! 
+\verb!R1(config-router)# router-id 1.1.1.1! 
 \verb!R1(config-router)# auto-cost reference-bandwidth 1000!
 \verb!R1(config-if)# interface GigabitEthernet 0/0!
 \verb!R1(config-if)# bandwidth 1000000!
@@ -188,9 +189,28 @@ This chapter describes how to configure a PPP connection.
 \verb!R1(config-if)# encapsulation ppp! 
 \verb!R1(config-if)# ppp quality 80!
 \subsection{Basic PPP Link Quality Control}
-\verb!R1(config)# interface multilink 1 !  \\
-\verb!R1(config-if)# interface Serial 0/0/0!  \\
-\verb!R1(config-if)# interface Serial 0/0/1! \\
+\verb!R1(config)# interface multilink 1!  
+\verb!R1(config-if)# interface Serial 0/0/0!  
+\verb!R1(config-if)# interface Serial 0/0/1! 
+
+\subsection{Basic PPP PAP Authentication}
+\textit{Note: The first command is the expected username and password which R3 will send!}
+
+\verb!R1(config)# username R3 secret class!
+\verb!R1(config)# interface s0/0/0!
+\verb!R1(config-if)# ppp authentication pap!
+\verb!R1(config-if)# ppp pap sent-username R1 password cisco!
+\verb! !
+
+
+
+
+
+
+
+\subsection{Verifying PPP Connection}
+\verb!R1# show interface serial 0/0/0!
+\verb!R1# show ppp multilink!
 
 
 \rule{0.3\linewidth}{0.25pt}
