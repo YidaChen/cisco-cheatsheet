@@ -5,6 +5,7 @@ This is a Cisco reference sheet which is geared toward practical usage. Feel fre
 PNG images of the reference sheet:
 
 ![](cheatsheet-thumb-0.png)
+![](cheatsheet-thumb-1.png)
 
 ## Download
 
