@@ -147,7 +147,7 @@ More information about \href{https://www.cisco.com/c/en/us/td/docs/ios/12_2sb/fe
 \section{OSPF}
 This chapter describes how to configure OSPF.
 \subsection{Single-Area OSPF}
-\textit{Note: The same commands are used for Multi-Area OSPF, except there are more area's. Carefully look which device belong to which area }\\
+\textit{Note: The same commands are used for Multi-Area OSPF, except that there are more area's. Carefully look which device belong's to which area }\\
 \verb!R1(config)# interface GigabitEthernet0/0! 
 \verb!R1(config-if)# bandwidth 1000000! \\
 \verb!R1(config-if)# exit! \\
@@ -208,22 +208,16 @@ This chapter describes how to configure a PPP connection.
 \verb!Router1(config)# interface s0/0/0!
 \verb!Router1(config-if)# ppp authentication chap!
 
-
-
-
 \verb!R1(config)# username R3 secret class!
 \verb!R1(config)# interface s0/0/0!
 \verb!R1(config-if)# ppp authentication pap!
 \verb!R1(config-if)# ppp pap sent-username R1 password cisco!
-\verb! !
 
-
-
-
-
-
-
-
+\subsection{Troubleshoot PPP}
+\verb!R1# debug ppp packet!
+\verb!R1# debug ppp negotiation!
+\verb!R1# debug ppp authentication!
+\verb!R1# debug ppp error!
 
 \subsection{Verifying PPP Connection}
 \verb!R1# show interface serial 0/0/0! \\
