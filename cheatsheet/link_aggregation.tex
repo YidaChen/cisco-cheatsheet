@@ -1,18 +1,22 @@
 \section{Link Aggregation}
 This chapter describes how to configure port channels and to apply and configure the Link Aggregation Control Protocol (LACP).
 \subsection{Configure Interfaces}
-\verb!s1(config)# interface range fe0/1-2!
-\verb!s1(config-if-range)# shutdown!
-\verb!s1(config-if-range)# channel-group 1 mode active!
-\verb!s1(config-if-range)# exit!
-\verb!s1(config)# interface port-channel 1!
-\verb!s1(config-if)# switchport mode trunk!
-\verb!s1(config-if)# switchport trunk allowed vlan 1,2,20!
+\begin{verbatim}
+S1(config)# interface range fe0/1-2
+S1(config-if-range)# shutdown
+S1(config-if-range)# channel-group 1 mode active
+S1(config-if-range)# exit
+S1(config)# interface port-channel 1
+S1(config-if)# switchport mode trunk
+S1(config-if)# switchport trunk allowed vlan 1,2,20
+\end{verbatim}
 
 \subsection{Verify Link Aggregation}
-\verb!s1# show interface port-channel1!
-\verb!s1# show etherchannel summary!
-\verb!s1# show etherchannel port-channel!
-\verb!s1# show interfaces f0/1 etherchannel!
+\begin{verbatim}
+S1# show interface port-channel1
+S1# show etherchannel summary
+S1# show etherchannel port-channel
+S1# show interfaces f0/1 etherchannel
+\end{verbatim}
 
 More information about \href{https://www.cisco.com/c/en/us/td/docs/ios/12_2sb/feature/guide/gigeth.html}{Link Aggregation Control Protocol (LACP) (802.3ad) for Gigabit Interfaces}.
