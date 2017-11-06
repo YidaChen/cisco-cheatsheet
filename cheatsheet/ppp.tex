@@ -1,0 +1,42 @@
+\section{Configure PPP}
+This chapter describes how to configure a PPP connection.
+\subsection{Basic PPP Configuration}
+\verb!R1(config)# interface Serial 0/0/0!
+\verb!R1(config-if)# encapsulation ppp!
+\subsection{Basic PPP Compression}
+\verb!R1(config)# interface Serial 0/0/0!
+\verb!R1(config-if)# encapsulation ppp!
+\verb!R1(config-if)# compress predictor!
+\subsection{Basic PPP Link Quality Control}
+\verb!R1(config)# interface Serial 0/0/0!
+\verb!R1(config-if)# encapsulation ppp!
+\verb!R1(config-if)# ppp quality 80!
+\subsection{Basic PPP Link Quality Control}
+\verb!R1(config)# interface multilink 1!
+\verb!R1(config-if)# interface Serial 0/0/0!
+\verb!R1(config-if)# interface Serial 0/0/1!
+
+\subsection{Basic PPP PAP Authentication}
+\textit{Note: The first command is the expected username and password which R3 will send!}
+
+\verb!R1(config)# username R3 secret class!
+\verb!R1(config)# interface s0/0/0!
+\verb!R1(config-if)# ppp authentication pap!
+\verb!R1(config-if)# ppp pap sent-username R1 password cisco!
+
+\subsection{Basic PPP CHAP Authentication}
+\textbf{Note!} As opposed of PAP. CHAP passwords need to be identical
+\verb!R1(config)# hostname Router1!
+\verb!Router1(config)# username Router 3 secret cisco!
+\verb!Router1(config)# interface s0/0/0!
+\verb!Router1(config-if)# ppp authentication chap!
+
+\subsection{Troubleshoot PPP}
+\verb!R1# debug ppp packet!
+\verb!R1# debug ppp negotiation!
+\verb!R1# debug ppp authentication!
+\verb!R1# debug ppp error!
+
+\subsection{Verifying PPP Connection}
+\verb!R1# show interface serial 0/0/0! \\
+\verb!R1# show ppp multilink!

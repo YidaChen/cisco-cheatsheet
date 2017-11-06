@@ -1,0 +1,34 @@
+\section{OSPF}
+This chapter describes how to configure OSPF.
+\subsection{Single-Area OSPF}
+\verb!R1(config)# interface GigabitEthernet0/0!
+\verb!R1(config-if)# bandwidth 1000000! \\
+\verb!R1(config-if)# exit! \\
+\verb!R1(config)# router ospf 10! \\
+\verb!R1(config-router)# router-id 1.1.1.1! \\
+\verb!R1(config-router)# auto-cost reference-bandwidth 1000!
+\verb!R1(config-router)# network 172.16.1.0 0.0.0.255 area 0!
+\verb!R1(config-router)# passive-interface g0/0!
+
+\subsection{Single-Area OSPFv3}
+\verb!R1(config)# ipv6 router ospf 10!
+\verb!R1(config-router)# router-id 1.1.1.1!
+\verb!R1(config-router)# auto-cost reference-bandwidth 1000!
+\verb!R1(config-if)# interface GigabitEthernet 0/0!
+\verb!R1(config-if)# bandwidth 1000000!
+\verb!R1(config-if)# ipv6 ospf 10 area 0!
+
+\subsection{Verifying Single-Area OSPF}
+\begin{tcolorbox}
+\textbf{Note!} To verify Single-Area OSPFv3 please use the ipv6 command.
+\end{tcolorbox}
+\verb!R1# show ip ospf neighbor! \\
+\verb!R1# show ip protocols! \\
+\verb!R1# show ip ospf! \\
+\verb!R1# show ip ospf interface! \\
+\verb!R1# show ip ospf interface brief! \\
+
+\section{Multi-Area OSPF}
+\begin{tcolorbox}
+\textbf{Note!} The same commands are used as for Single-Area OSPF, except there are more area's. Carefully look which device belong to which area.
+\end{tcolorbox}

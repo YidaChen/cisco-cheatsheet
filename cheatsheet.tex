@@ -69,173 +69,29 @@
      \Large{Cisco Cheat Sheet} \\
 \end{center}
 
-\section{Basic Configuration}
-\subsection{Initial Commands}
-Name the device: \\
-\verb!Router# configure terminal! \\
-\verb!Router(config)# hostname [hostname]! \\
+% Basic Commands
+\input{cheatsheet/basic.tex}
 
-\smallskip
+% VLAN
+\input{cheatsheet/vlan.tex}
 
-Configure a banner: \\
-\verb!R1(config)# banner motd $Autorized Access Only$! \\
+% ACL, Access Control Lists
+\input{cheatsheet/acl.tex}
 
-\smallskip
+% IPv6
+\input{cheatsheet/ipv6.tex}
 
-Save the Changes: \\
-\verb!R1# copy running-config startup-config!
+% Spanning Tree
+\input{cheatsheet/spanningtree.tex}
 
-\smallskip
+% Link Aggregation
+\input{cheatsheet/link_aggregation.tex}
 
-Configure Interface IPv4:
-\verb!R1(config)# interface gigabitethernet 0/0! \\
-\verb!R1(config-if)# description Link to LAN 1! \\
-\verb!R1(config-if)# ip address 192.168.10.1 255.255.255.0! \\
-\verb!R1(config-if)# no shutdown! \\
-\textit{-or-} \\
-\verb!R1(config)# interface serial 0/0/0! \\
-\verb!R1(config-if)# description Link to R2! \\
-\verb!R1(config-if)# ip address 209.165.200.225 255.255.255.252! \\
-\verb!R1(config-if)# clock rate 128000! \\
-\verb!R1(config-if)# no shutdown! \\
+% OSPF
+\input{cheatsheet/ospf.tex}
 
-
-\subsection{Secure Management Access}
-\verb!R1(config)# enable secret class! \\
-\verb!R1(config)# line console 0! \\
-\verb!R1(config-line)# password cisco! \\
-\verb!R1(config-line)# login! \\
-\verb!R1(config-line)# exit! \\
-\verb!R1(config)# line vty 0 4! \textit{$\leftarrow$ depending on the number of VTYs!} \\
-\verb!R1(config-line)# password cisco! \\
-\verb!R1(config-line)# login! \\
-\verb!R1(config-exit)# exit! \\
-\verb!R1(config)# service password-encryption!
-
-
-\section{VLAN}
-
-\subsection{Access Control Lists}
-This chapter describes how to configure Access Control Lists (ACLs).
-\begin{tcolorbox}
-\textbf{Note!} Each ACL contains an implicit DENY at the end!
-\end{tcolorbox}
-
-\section{IPv6}
-This chapter describes how to configure IPv6.
-\subsection{IPv6 Autoconfiguration}
-\begin{tcolorbox}
-\textbf{Note!} Autoconfiguration requires te leas amount of configuration but makes it difficult to remember the IPv6 addresses.
-This method uses the MAC address of the device to create an IPv6 address with the \verb!FE80::! prefix.
-\end{tcolorbox}
-
-
-\section{Spanning Tree}
-This chapter describes how to configure Spanning Tree.
-
-\section{Link Aggregation}
-This chapter describes how to configure port channels and to apply and configure the Link Aggregation Control Protocol (LACP).
-\subsection{Configure Interfaces}
-\verb!s1(config)# interface range fe0/1-2!
-\verb!s1(config-if-range)# shutdown!
-\verb!s1(config-if-range)# channel-group 1 mode active!
-\verb!s1(config-if-range)# exit!
-\verb!s1(config)# interface port-channel 1!
-\verb!s1(config-if)# switchport mode trunk!
-\verb!s1(config-if)# switchport trunk allowed vlan 1,2,20!
-
-\subsection{Verify Link Aggregation}
-\verb!s1# show interface port-channel1!
-\verb!s1# show etherchannel summary!
-\verb!s1# show etherchannel port-channel!
-\verb!s1# show interfaces f0/1 etherchannel!
-
-More information about \href{https://www.cisco.com/c/en/us/td/docs/ios/12_2sb/feature/guide/gigeth.html}{Link Aggregation Control Protocol (LACP) (802.3ad) for Gigabit Interfaces}.
-
-\section{OSPF}
-This chapter describes how to configure OSPF.
-\subsection{Single-Area OSPF}
-\begin{tcolorbox}
-\textbf{Note!} The same commands are used for Multi-Area OSPF, except there are more area's. Carefully look which device belong to which area.
-\end{tcolorbox}
-\verb!R1(config)# interface GigabitEthernet0/0!
-\verb!R1(config-if)# bandwidth 1000000! \\
-\verb!R1(config-if)# exit! \\
-\verb!R1(config)# router ospf 10! \\
-\verb!R1(config-router)# router-id 1.1.1.1! \\
-\verb!R1(config-router)# auto-cost reference-bandwidth 1000!
-\verb!R1(config-router)# network 172.16.1.0 0.0.0.255 area 0!
-\verb!R1(config-router)# passive-interface g0/0!
-
-\subsection{Single-Area OSPFv3}
-\verb!R1(config)# ipv6 router ospf 10!
-\verb!R1(config-router)# router-id 1.1.1.1!
-\verb!R1(config-router)# auto-cost reference-bandwidth 1000!
-\verb!R1(config-if)# interface GigabitEthernet 0/0!
-\verb!R1(config-if)# bandwidth 1000000!
-\verb!R1(config-if)# ipv6 ospf 10 area 0!
-
-\subsection{Verifying Single-Area OSPF}
-\begin{tcolorbox}
-\textbf{Note!} To verify Single-Area OSPFv3 please use the ipv6 command.
-\end{tcolorbox}
-\verb!R1# show ip ospf neighbor! \\
-\verb!R1# show ip protocols! \\
-\verb!R1# show ip ospf! \\
-\verb!R1# show ip ospf interface! \\
-\verb!R1# show ip ospf interface brief! \\
-
-%\section{Multi-Area OSPF}
-
-\section{Configure PPP}
-This chapter describes how to configure a PPP connection.
-\subsection{Basic PPP Configuration}
-\verb!R1(config)# interface Serial 0/0/0!
-\verb!R1(config-if)# encapsulation ppp!
-\subsection{Basic PPP Compression}
-\verb!R1(config)# interface Serial 0/0/0!
-\verb!R1(config-if)# encapsulation ppp!
-\verb!R1(config-if)# compress predictor!
-\subsection{Basic PPP Link Quality Control}
-\verb!R1(config)# interface Serial 0/0/0!
-\verb!R1(config-if)# encapsulation ppp!
-\verb!R1(config-if)# ppp quality 80!
-\subsection{Basic PPP Link Quality Control}
-\verb!R1(config)# interface multilink 1!
-\verb!R1(config-if)# interface Serial 0/0/0!
-\verb!R1(config-if)# interface Serial 0/0/1!
-
-\subsection{Basic PPP PAP Authentication}
-\begin{tcolorbox}
-\textbf{Note!} The first command is the expected username and password which R3 will send!
-\end{tcolorbox}
-
-\verb!R1(config)# username R3 secret class!
-\verb!R1(config)# interface s0/0/0!
-\verb!R1(config-if)# ppp authentication pap!
-\verb!R1(config-if)# ppp pap sent-username R1 password cisco!
-
-\subsection{Basic PPP CHAP Authentication}
-\textit{Note: As opposed of PAP. CHAP passwords need to be identical}
-\verb!R1(config)# hostname Router1!
-\verb!Router1(config)# username Router 3 secret cisco!
-\verb!Router1(config)# interface s0/0/0!
-\verb!Router1(config-if)# ppp authentication chap!
-\verb!R1(config)# username R3 secret class!
-\verb!R1(config)# interface s0/0/0!
-\verb!R1(config-if)# ppp authentication pap!
-\verb!R1(config-if)# ppp pap sent-username R1 password cisco!
-
-\subsection{Troubleshoot PPP}
-\verb!R1# debug ppp packet!
-\verb!R1# debug ppp negotiation!
-\verb!R1# debug ppp authentication!
-\verb!R1# debug ppp error!
-
-\subsection{Verifying PPP Connection}
-\verb!R1# show interface serial 0/0/0! \\
-\verb!R1# show ppp multilink!
-
+% PPP
+\input{cheatsheet/ppp.tex}
 
 \rule{0.3\linewidth}{0.25pt}
 \scriptsize
