@@ -1,2 +1,39 @@
 \section{Spanning Tree}
 This chapter describes how to configure Spanning Tree.
+\subsection{Verify Spanning tree configuration}
+\begin{verbatim}
+All.
+S1#show spanning-tree
+Per VLAN.
+S1#show spanning-tree vlan 1
+Discover layer 2 topology (if cdp is enabled).
+S1#show cdp neighbours
+\end{verbatim}
+\subsection{Configure root bridge}
+\begin{verbatim}
+Method 0: Do nothing and let the root bridge be 
+determined by the lowest MAC address.
+Method 1: Set specific switch as (secondary) root bridge.
+S1(config)#spanning-tree VLAN 1 root primary
+or 
+S1(config)#spanning-tree VLAN 1 root secondary
+Method 2: Give priority numbers to all switches. 
+Lowest becomes root bridge (needs to be a multiple of 4096).
+S1(config)#spanning-tree VLAN 1 priority 24576
+\end{verbatim}
+\subsection{Rapid spanning tree mode}
+\begin{verbatim}
+Enable.
+S1(config)#spanning-tree mode rapid-pvst
+\end{verbatim}
+\subsection{PortFast and BPDU guard for access ports}
+\begin{verbatim}
+Method 1: Per interface.
+S1(config)#interface f0/1
+S1(config-if)#spanning-tree portfast
+S1(config-if)#spanning-tree bpduguard enable
+Method 2: Enable globally for nontrunking interfaces.
+S1(config)#spanning-tree portfast default
+Enable bpduguard on portfast enabled ports.
+S1(config)#spanning-tree portfast bpduguard default
+\end{verbatim}
