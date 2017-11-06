@@ -2,10 +2,10 @@
 This chapter describes how to configure IPv6.
 
 \subsection{IPv6 Autoconfiguration}
-\begin{tcolorbox}
-\textbf{Note!} Autoconfiguration requires te leas amount of configuration but makes it difficult to remember the IPv6 addresses.
+\begin{textbox}{gray}{NOTE}
+Autoconfiguration requires te least amount of configuration but makes it difficult to remember the IPv6 addresses.
 This method uses the MAC address of the device to create an IPv6 address with the \verb!FE80::! prefix.
-\end{tcolorbox}
+\end{textbox}
 Begin by configuring the router. Enter the interface configuration mode and enable IPv6 on the interface.
 \begin{verbatim}
 R1(config)# ipv6 unicast-routing
