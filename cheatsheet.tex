@@ -206,15 +206,11 @@ This chapter describes how to configure a PPP connection.
 \verb!R1(config-if)# ppp pap sent-username R1 password cisco!
 
 \subsection{Basic PPP CHAP Authentication}
-\textit{Note: As opposed of PAP. CHAP passwords need to be identical}
+\textbf{Note!} As opposed of PAP. CHAP passwords need to be identical
 \verb!R1(config)# hostname Router1!
 \verb!Router1(config)# username Router 3 secret cisco!
 \verb!Router1(config)# interface s0/0/0!
 \verb!Router1(config-if)# ppp authentication chap!
-\verb!R1(config)# username R3 secret class!
-\verb!R1(config)# interface s0/0/0!
-\verb!R1(config-if)# ppp authentication pap!
-\verb!R1(config-if)# ppp pap sent-username R1 password cisco!
 
 \subsection{Troubleshoot PPP}
 \verb!R1# debug ppp packet!
