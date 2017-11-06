@@ -172,7 +172,26 @@ This chapter describes how to configure OSPF.
 \verb!R1# show ip ospf interface! \\
 \verb!R1# show ip ospf interface brief! \\
 
-\section{Multi-Area OSPF}
+%\section{Multi-Area OSPF}
+
+\section{Configure PPP}
+This chapter describes how to configure a PPP connection.
+\subsection{Basic PPP Configuration}
+\verb!R1(config)# interface Serial 0/0/0! 
+\verb!R1(config-if)# encapsulation ppp! 
+\subsection{Basic PPP Compression}
+\verb!R1(config)# interface Serial 0/0/0! 
+\verb!R1(config-if)# encapsulation ppp! 
+\verb!R1(config-if)# compress predictor! 
+\subsection{Basic PPP Link Quality Control}
+\verb!R1(config)# interface Serial 0/0/0! 
+\verb!R1(config-if)# encapsulation ppp! 
+\verb!R1(config-if)# ppp quality 80!
+\subsection{Basic PPP Link Quality Control}
+\verb!R1(config)# interface multilink 1 !  \\
+\verb!R1(config-if)# interface Serial 0/0/0!  \\
+\verb!R1(config-if)# interface Serial 0/0/1! \\
+
 
 \rule{0.3\linewidth}{0.25pt}
 \scriptsize
