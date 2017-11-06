@@ -146,7 +146,7 @@ More information about \href{https://www.cisco.com/c/en/us/td/docs/ios/12_2sb/fe
 
 \section{OSPF}
 This chapter describes how to configure OSPF.
-\section{Single-Area OSPF}
+\subsection{Single-Area OSPF}
 \textit{Note: The same commands are used for Multi-Area OSPF, except there are more area's. Carefully look which device belong to which area }\\
 \verb!R1(config)# interface GigabitEthernet0/0! 
 \verb!R1(config-if)# bandwidth 1000000! \\
@@ -200,6 +200,21 @@ This chapter describes how to configure a PPP connection.
 \verb!R1(config)# interface s0/0/0!
 \verb!R1(config-if)# ppp authentication pap!
 \verb!R1(config-if)# ppp pap sent-username R1 password cisco!
+
+\subsection{Basic PPP CHAP Authentication}
+\textit{Note: As opposed of PAP. CHAP passwords need to be identical}
+\verb!R1(config)# hostname Router1!
+\verb!Router1(config)# username Router 3 secret cisco!
+\verb!Router1(config)# interface s0/0/0!
+\verb!Router1(config-if)# ppp authentication chap!
+
+
+
+
+\verb!R1(config)# username R3 secret class!
+\verb!R1(config)# interface s0/0/0!
+\verb!R1(config-if)# ppp authentication pap!
+\verb!R1(config-if)# ppp pap sent-username R1 password cisco!
 \verb! !
 
 
@@ -208,8 +223,10 @@ This chapter describes how to configure a PPP connection.
 
 
 
+
+
 \subsection{Verifying PPP Connection}
-\verb!R1# show interface serial 0/0/0!
+\verb!R1# show interface serial 0/0/0! \\
 \verb!R1# show ppp multilink!
 
 
