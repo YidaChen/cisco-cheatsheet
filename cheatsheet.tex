@@ -4,6 +4,7 @@
 \usepackage{ifthen}
 \usepackage[a4paper,landscape]{geometry}
 \usepackage{hyperref}
+\usepackage{tcolorbox}
 
 % This sets page margins to .5 inch if using letter paper, and to 1cm
 % if using A4 paper. (This probably isn't strictly necessary.)
@@ -70,32 +71,45 @@
 
 \section{Basic Configuration}
 \subsection{Initial Commands}
-Example: \verb!enable!
+Name the device:
+\verb!Router# configure terminal!
+\verb!Router(config)# hostname [hostname]!
 
-\section{Routing}
+\subsection{VLAN}
 
-\section{Example Section}
-Example of a table:
-\begin{tabular}{@{}ll@{}}
-\verb!command!    & This is the explanation of the command. \\
-\verb!command!    & This is the explanation of the command.
-\end{tabular}
+\subsection{Access Control Lists}
+This chapter describes how to configure Access Control Lists (ACLs).
+\begin{tcolorbox}
+\textbf{Let op!} Each ACL contains an implicit DENY at the end!
+\end{tcolorbox}
 
-\section{Example Section}
-Example of a table:
-\begin{tabular}{@{}ll@{}}
-\verb!command!    & This is the explanation of the command. \\
-\verb!a very long command !    & This is the explanation of the command. \\
-\verb!is written here!    &
-\end{tabular}
 
-\section{Example Section}
-Example of a table:
-\begin{tabular}{@{}ll@{}}
-\verb!command!    & This is the explanation of the command. \\
-\verb!command!    & This is the explanation of the command.
-\end{tabular}
+\section{Spanning Tree}
+This chapter describes how to configure Spanning Tree.
 
+\section{Link Aggregation}
+This chapter describes how to configure port channels and to apply and configure the Link Aggregation Control Protocol (LACP).
+\subsection{Configure Interfaces}
+\verb!s1(config)# interface range fe0/1-2!
+\verb!s1(config-if-range)# shutdown!
+\verb!s1(config-if-range)# channel-group 1 mode active!
+\verb!s1(config-if-range)# exit!
+\verb!s1(config)# interface port-channel 1!
+\verb!s1(config-if)# switchport mode trunk!
+\verb!s1(config-if)# switchport trunk allowed vlan 1,2,20!
+
+\subsection{Verify Link Aggregation}
+\verb!s1# show interface port-channel1!
+\verb!s1# show etherchannel summary!
+\verb!s1# show etherchannel port-channel!
+\verb!s1# show interfaces f0/1 etherchannel!
+
+More information about \href{https://www.cisco.com/c/en/us/td/docs/ios/12_2sb/feature/guide/gigeth.html}{Link Aggregation Control Protocol (LACP) (802.3ad) for Gigabit Interfaces}.
+
+\section{OSPF}
+This chapter describes how to configure OSPF.
+\section{Single-Area OSPF}
+\section{Multi-Area OSPF}
 
 \rule{0.3\linewidth}{0.25pt}
 \scriptsize
