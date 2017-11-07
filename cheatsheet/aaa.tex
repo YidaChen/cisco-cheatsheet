@@ -1,0 +1,34 @@
+\section{AAA}
+This chapter describes how to configure AAAA.
+
+\subsection{SSH}
+After the default SSH configuration:
+\begin{verbatim}
+R1(config)#ip domain-name ccnasecurity.com
+R1(config)#crypto key generate rsa
+R1(config)#ip ssh version 2
+\end{verbatim}
+
+\subsection{RADIUS}
+\begin{verbatim}
+  R1(config)# aaa new-model
+  R1(config)# radius-server host 192.168.3.2
+  R1(config)# radius-server key radiuspa55
+  R1(config)# aaa authentication login default group radius loca
+\end{verbatim}
+\begin{textbox}{gray}{NOTE}
+  With the last command the router/switch first looks at the RADIUS server.
+  If the RADIUS server is not available he uses the local login database.
+\end{textbox}
+Console via RADIUS:
+\begin{verbatim}
+  R1(config)# line console 0
+  R1(config-line)# login authentication default
+\end{verbatim}
+
+SSH via RADIUS:
+\begin{verbatim}
+  R1(config)# line vty 0 15
+  R1(config-line)# login authentication default
+  R1(config-line)# transport mode ssh
+\end{verbatim}
