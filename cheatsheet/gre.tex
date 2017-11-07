@@ -1,0 +1,30 @@
+\section{GRE}
+This chapter describes how to configure GRE.
+
+Start by setting up a tunnel on Router A:
+\begin{verbatim}
+  RA(config)# interface tunnel 0
+  RA(config-if)# ip address 10.10.10.1 255.255.255.252
+  #External interface of Router A
+  RA(config-if)# tunnel source s0/0/0
+  #External IP of Router B
+  RA(config-if)# tunnel destination 209.165.122.2
+  RA(config-if)# no shutdown
+\end{verbatim}
+
+The same for Router B:
+\begin{verbatim}
+  RB(config)# interface tunnel 0
+  RB(config-if)# ip address 10.10.10.2 255.255.255.252
+  #External interface of Router B
+  RB(config-if)# tunnel source s0/0/0
+  #External IP of Router A
+  RB(config-if)# tunnel destination 64.103.211.2
+  RB(config-if)# no shutdown
+\end{verbatim}
+
+Give the right routes for using the tunnel
+\begin{verbatim}
+  RA(config)# ip route 192.168.2.0 255.255.255.0 10.10.10.2
+  RB(config)# ip route 192.168.1.0 255.255.255.0 10.10.10.1
+\end{verbatim}
