@@ -1,0 +1,50 @@
+\section{IP Tunneling}
+This chapter describes how to configure IP Tunneling.
+\subsection{Generic Routing Encapsulation}
+This chapter describes how to configure Generic Routing Encapsulation (GRE).
+
+GRE tunnel uses a \textit{tunnel} interface; a logical interface configured on
+the router with an IP address where packets are encapsulated and decapsulated as
+they enter or exit the GRE tunnel.
+
+Start by setting up a tunnel on Router A (\textit{interface of RA and IP of RB}):
+\begin{verbatim}
+  RA(config)# interface tunnel 0
+  RA(config-if)# ip address 10.10.10.1 255.255.255.252
+  RA(config-if)# tunnel source s0/0/0
+  RA(config-if)# tunnel destination 209.165.122.2
+  RA(config-if)# no shutdown
+\end{verbatim}
+
+The same for Router B (\textit{interface of RB and IP of RA}):
+\begin{verbatim}
+  RB(config)# interface tunnel 0
+  RB(config-if)# ip address 10.10.10.2 255.255.255.252
+  RB(config-if)# tunnel source s0/0/0
+  RB(config-if)# tunnel destination 64.103.211.2
+  RB(config-if)# no shutdown
+\end{verbatim}
+
+Give the right routes for using the tunnel
+\begin{verbatim}
+  RA(config)# ip route 192.168.2.0 255.255.255.0 10.10.10.2
+  RB(config)# ip route 192.168.1.0 255.255.255.0 10.10.10.1
+\end{verbatim}
+
+\subsubsection{Troubleshooting Generic Routing Encapsulation}
+These are four possible status in which a GRE tunnel interface can be:
+\begin{description}
+  \item[up/up] The tunnel is fully functional and passes traffic.
+  \item[adminstratively down/down] The tunnel has been administratively shut down.
+  \item[up/down] Even though te tunnel is administratively up, something causes the line protocol on the interface to be down.
+  \item[reset/down] This is usually a transient state when the tunnel is reset by software.
+\end{description}
+
+Useful commands:
+\begin{verbatim}
+  R1# show ip interface brief
+  R1# show ip interface brief | include Tunnel
+  R1# show interface tunnel 0
+\end{verbatim}
+
+More information about \href{https://www.cisco.com/c/en/us/support/docs/ip/generic-routing-encapsulation-gre/118361-technote-gre-00.html}{GRE Tunnel Interface States and What Impacts Them}.
