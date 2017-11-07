@@ -14,7 +14,8 @@ R1(config)#ip ssh version 2
   R1(config)# aaa new-model
   R1(config)# radius-server host 192.168.3.2
   R1(config)# radius-server key radiuspa55
-  R1(config)# aaa authentication login default group radius loca
+  R1(config)# aaa authentication login default
+              group radius local
 \end{verbatim}
 \begin{textbox}{gray}{NOTE}
   With the last command the router/switch first looks at the RADIUS server.
