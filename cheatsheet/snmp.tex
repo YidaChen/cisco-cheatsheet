@@ -1,0 +1,14 @@
+\section{Configure SNMPv3}
+This chapter explains how to configure SNMPv3 securely
+\subsection{Configure SNMPv3 Security}
+\begin{verbatim}
+  R1(config)# ip acces-list standard PERMIT-ADMIN
+  R1(config-nacl)# permit 192.168.1.0 0.0.0.255
+  R1(config-nacl)# exit
+  R1(config)# snmp-server view SNMP-RO iso included
+  R1(config)# snmp-server group ADMIN v3 priv
+  read SNMP-RO acces PERMIT-ADMIN
+  R1(config#) snmp-server user BOB ADMIN v3 auth sha
+  cisco12345 priv aes 128 cisco54321
+  R1(config)# end
+\end{verbatim}

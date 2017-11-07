@@ -1,25 +1,25 @@
 \section{Security}
-This chapter explains how to secure devices 
+This chapter explains how to secure devices
 \subsection{Commands to increase Acces Security}
 \begin{verbatim}
-R1(config)# security paswords min-length 10 
+R1(config)# security paswords min-length 10
 R1(config)# service password-encryption
-R1(config)# line vty 0 4 
+R1(config)# line vty 0 4
 R1(config)# exec-timeout 3 30
-R1(config)# line console 0 
+R1(config)# line console 0
 R1(config)# exec-timeout 3 30
 \end{verbatim}
 
 \subsection{Enable Stronger Password Encryption}
 \begin{textbox}{gray}{NOTE}
-There are two methods. With the first method you use the already encrypted passwords hash. algoritm-type does not work in Packet Tracer 
+There are two methods. With the first method you use the already encrypted passwords hash. algoritm-type does not work in Packet Tracer
 \end{textbox}
 \begin{verbatim}
 First Methode
 R1(config)# enable secret 9 HZWdzLHwhPtZ3UD9OlUDSGvBy.m8Tf9vCGDJRcYy8zIMbyRJgtxgRkwzY \\
 
 Second Method
-R1(config)# enable algorithm-type scrypt secret cisco 
+R1(config)# enable algorithm-type scrypt secret cisco
 \end{verbatim}
 
 \subsection{Password Encryption for username secret}
@@ -30,15 +30,15 @@ R1(config)# username Bob algorithm-type scrypt secret cisco
 \subsection{Configure Secure Line Acces}
 \begin{verbatim}
 R1(config)# username Bob algorithm-type scrypt secret cisco
-R1(config)# line console 0 
-R1(config-line)# login local 
-R1(config-line)# exit
-R1(config)# line aux 0 
+R1(config)# line console 0
 R1(config-line)# login local
 R1(config-line)# exit
-R1(config)# vty 0 4 
-R1(config-line)# login local 
-R1(config-line)# transport input ssh 
+R1(config)# line aux 0
+R1(config-line)# login local
+R1(config-line)# exit
+R1(config)# vty 0 4
+R1(config-line)# login local
+R1(config-line)# transport input ssh
 \end{verbatim}
 
 
@@ -47,9 +47,9 @@ R1(config-line)# transport input ssh
 PERMIT-ADMIN is an ACL-class. These enhancement only work on virtual connections like SSH
 \end{textbox}
 \begin{verbatim}
-R1(config)# login block-for 10 attempts 3 within 30 
-R1(config)# login quiet-mode acces-class PERMIT-ADMIN 
-R1(config)# login delay 5 
+R1(config)# login block-for 10 attempts 3 within 30
+R1(config)# login quiet-mode acces-class PERMIT-ADMIN
+R1(config)# login delay 5
 R1(config)# login on-succes log
 R1(config)# login on-failure log
 \end{verbatim}
@@ -62,16 +62,16 @@ R1# show login failures
 
 \subsection{Configure SSH }
 \begin{textbox}{gray}{NOTE}
-To SSH from router-to-router use SSH -l username ip 
+To SSH from router-to-router use SSH -l username ip
 \end{textbox}
 \begin{verbatim}
 R1(config)# ip domain-name example.com
 R1(config)# crypto key generate rsa general-keys modulus 2048
-R1(config)# ip ssh version 2 
+R1(config)# ip ssh version 2
 R1(config)# username Bob algorithm-type scrypt secret cisco
 R1(config)# line vty 0 4
 R1(conifg-line)# login local
-R1(config-line)# transport input ssh 
+R1(config-line)# transport input ssh
 R1(config-line)# end
 \end{verbatim}
 
@@ -79,40 +79,20 @@ You can also modify SSH parameters
 
 \begin{verbatim}
 R1(config)#ip ssh time-out 60
-R1(config)#ip ssh authentication-retries 3 
+R1(config)#ip ssh authentication-retries 3
 \end{verbatim}
 
 \subsection{Verify SSH}
 \begin{verbatim}
 R1# show ip ssh
-R1# show crypto key mypubkey rsa 
+R1# show crypto key mypubkey rsa
 \end{verbatim}
 
 \section{Limit Command Availibilty}
-This chapter explains how to limit commands within Cisco IoS. 
-When there is a global command please use ? for the correct syntax 
+This chapter explains how to limit commands within Cisco IoS.
+When there is a global command please use ? for the correct syntax
 
 \subsection{Configure Privilege level}
 \begin{verbatim}
-R1(config)# privilege mode (level leven) | reset command 
+R1(config)# privilege mode (level leven) | reset command
 \end{verbatim}
-
-\section{Configure SNMPv3}
-This chapter explains how to configure SNMPv3 securely
-
-\subsection{Configure SNMPv3 Security}
-
-\begin{verbatim}
-R1(config)# ip acces-list standard PERMIT-ADMIN 
-R1(config-nacl)# permit 192.168.1.0 0.0.0.255
-R1(config-nacl)# exit
-R1(config)# snmp-server view SNMP-RO iso included 
-R1(config)# snmp-server group ADMIN v3 priv 
-read SNMP-RO acces PERMIT-ADMIN
-R1(config#) snmp-server user BOB ADMIN v3 auth sha 
-cisco12345 priv aes 128 cisco54321
-R1(config)# end 
-\end{verbatim}
-
-\section{AAA Services}
-This chapter describes how to configure everything related to AAA
